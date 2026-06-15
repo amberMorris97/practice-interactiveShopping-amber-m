@@ -9,7 +9,7 @@ newItemInput.addEventListener('input', (event) => newItem = event.target.value);
 
 addItem.addEventListener('click', () => {
     if (newItem === '') return;
-    
+
     let editBtn = document.createElement('button');
     editBtn.textContent = 'edit';
     editBtn.classList.add('edit');
@@ -41,6 +41,8 @@ shoppingList.addEventListener('click', (event) => {
     }
 
     if (event.target.classList.contains('save')) {
+        if (event.target.parentElement.childNodes[0].value === '') return;
+        
         let editBtn = document.createElement('button');
         editBtn.classList.add('edit');
         editBtn.textContent = 'edit';
