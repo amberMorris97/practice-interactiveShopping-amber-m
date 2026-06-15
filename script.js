@@ -5,18 +5,22 @@ let addItem = document.getElementById('add');
 let newItem = '';
 let editedItem = '';
 
+const createBtn = (text) => {
+    let btn = document.createElement('button');
+    btn.innerText = text;
+    btn.classList.add(text);
+
+    return btn;
+}
+
 newItemInput.addEventListener('input', (event) => newItem = event.target.value);
 
 addItem.addEventListener('click', () => {
     if (newItem === '') return;
 
-    let editBtn = document.createElement('button');
-    editBtn.textContent = 'edit';
-    editBtn.classList.add('edit');
+    let editBtn = createBtn('edit');
 
-    let deleteBtn = document.createElement('button');
-    deleteBtn.innerText = 'delete';
-    deleteBtn.classList.add('delete');
+    let deleteBtn = createBtn('delete');
 
     let newListItem = document.createElement('li');
     newListItem.append(newItem, ' ', editBtn, ' ', deleteBtn);
@@ -28,9 +32,7 @@ addItem.addEventListener('click', () => {
 
 shoppingList.addEventListener('click', (event) => {
     if (event.target.classList.contains('edit')) {
-        let saveBtn = document.createElement('button');
-        saveBtn.innerText = 'save';
-        saveBtn.classList.add('save');
+        let saveBtn = createBtn('save');
 
         let tempInput = document.createElement('input');
         tempInput.value = event.target.parentElement.childNodes[0].textContent;
@@ -42,14 +44,10 @@ shoppingList.addEventListener('click', (event) => {
 
     if (event.target.classList.contains('save')) {
         if (event.target.parentElement.childNodes[0].value === '') return;
-        
-        let editBtn = document.createElement('button');
-        editBtn.classList.add('edit');
-        editBtn.textContent = 'edit';
 
-        let deleteBtn = document.createElement('button');
-        deleteBtn.innerText = 'delete';
-        deleteBtn.classList.add('delete');
+        let editBtn = createBtn('edit');
+
+        let deleteBtn = createBtn('delete');
 
 
         editedItem = event.target.parentElement.childNodes[0].value;
