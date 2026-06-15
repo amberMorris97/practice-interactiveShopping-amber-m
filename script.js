@@ -8,6 +8,8 @@ let editedItem = '';
 newItemInput.addEventListener('input', (event) => newItem = event.target.value);
 
 addItem.addEventListener('click', () => {
+    if (newItem === '') return;
+    
     let editBtn = document.createElement('button');
     editBtn.textContent = 'edit';
     editBtn.classList.add('edit');
@@ -21,6 +23,7 @@ addItem.addEventListener('click', () => {
 
     shoppingList.appendChild(newListItem);
     newItemInput.value = '';
+    newItem = '';
 });
 
 shoppingList.addEventListener('click', (event) => {
@@ -54,4 +57,7 @@ shoppingList.addEventListener('click', (event) => {
         event.target.parentElement.replaceWith(newLi);
     }
 
+    if (event.target.classList.contains('delete')) {
+        event.target.parentElement.remove();
+    }
 });
